@@ -82,7 +82,29 @@ static HAL_StatusTypeDef buildOutputFrame(uint16_t code, I2cDacFrame_t *frame) {
     //
     frame->bytes[2] = (uint8_t) (code & 0xFFU);
 
-    frame->length = 3U;
+
+    frame->bytes[3] = (uint8_t) (
+        (MCP4728_C2 << 7) |
+        (MCP4728_C1 << 6) |
+        (MCP4728_C0 << 5) |
+        (MCP4728_W1 << 4) |
+        (MCP4728_W0 << 3) |
+        (MCP4728_DAC1 << 2) |
+        (MCP4728_DAC0 << 1) |
+        MCP4728_UDAC
+    );
+
+    frame->bytes[4] = (uint8_t) (
+        (MCP4728_VREF << 7) |
+        (MCP4728_PD1 << 6) |
+        (MCP4728_PD0 << 5) |
+        (MCP4728_GX << 4) |
+        ((code >> 8) & 0x0FU)
+    );
+    //
+    frame->bytes[5] = (uint8_t) (code & 0xFFU);
+
+    frame->length = 6U;
     return HAL_OK;
 }
 
