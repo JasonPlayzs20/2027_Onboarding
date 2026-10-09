@@ -41,8 +41,10 @@
 #define MCP4728_C0 0U
 #define MCP4728_W1 0U
 #define MCP4728_W0 0U
-#define MCP4728_DAC1 0U
-#define MCP4728_DAC0 0U
+#define MCP4728_CHA_DAC1 0U
+#define MCP4728_CHA_DAC0 0U
+#define MCP4728_CHB_DAC1 0U
+#define MCP4728_CHB_DAC0 1U
 #define MCP4728_UDAC 1U
 #define MCP4728_VREF 0U
 #define MCP4728_PD1 0U
@@ -67,8 +69,8 @@ static HAL_StatusTypeDef buildOutputFrame(uint16_t code, I2cDacFrame_t *frame) {
         (MCP4728_C0 << 5) |
         (MCP4728_W1 << 4) |
         (MCP4728_W0 << 3) |
-        (MCP4728_DAC1 << 2) |
-        (MCP4728_DAC0 << 1) |
+        (MCP4728_CHA_DAC1 << 2) |
+        (MCP4728_CHA_DAC0 << 1) |
         MCP4728_UDAC
     );
 
@@ -89,8 +91,8 @@ static HAL_StatusTypeDef buildOutputFrame(uint16_t code, I2cDacFrame_t *frame) {
         (MCP4728_C0 << 5) |
         (MCP4728_W1 << 4) |
         (MCP4728_W0 << 3) |
-        (MCP4728_DAC1 << 2) |
-        (MCP4728_DAC0 << 1) |
+        (MCP4728_CHB_DAC1 << 2) |
+        (MCP4728_CHB_DAC0 << 1) |
         MCP4728_UDAC
     );
 
